@@ -1,0 +1,28 @@
+<p>login works!</p>
+<!-- <div class="container">
+    <h2>Login</h2>
+    <form *ngIf="!isLoggedIn" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div>
+        <label>Email</label>
+        <input type="email" formControlName="email" />
+        <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</small>
+        <small *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email format</small>
+      </div>
+  
+      <div>
+        <label>Password</label>
+        <input type="password" formControlName="password" />
+        <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</small>
+        <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Minimum 6 characters required</small>
+      </div>
+  
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      <p *ngIf="loginError" style="color: red">{{ loginError }}</p>
+    </form>
+  
+    <div *ngIf="isLoggedIn">
+      <h3>Welcome! You are logged in.</h3>
+      <button (click)="onLogout()">Logout</button>
+    </div>
+  </div>
+   -->
