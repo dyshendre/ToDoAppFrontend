@@ -1,0 +1,49 @@
+<table>
+<thead>
+    <tr>
+      <th>Task</th>
+      <th>Description</th>
+      <th>Employee</th>
+      <th>Deadline</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr *ngFor="let task of tasks" [formGroup]="editForm">
+    <td>
+      <ng-container *ngIf="editingTaskId === task.taskId; else viewMode">
+        <input type="text" formControlName="task" />
+      </ng-container>
+      <ng-template #viewMode>
+        {{ task.task }}
+      </ng-template>
+    </td>
+  
+    <td>
+      <ng-container *ngIf="editingTaskId === task.taskId; else viewDesc">
+        <input type="text" formControlName="taskDescription" />
+      </ng-container>
+      <ng-template #viewDesc>
+        {{ task.taskDescription }}
+      </ng-template>
+    </td>
+  
+    <td>
+      {{ task.employee ? (task.employee.name + ' (' + task.employee.department + ')') : 'Unassigned' }}
+    </td>
+  
+    <td>{{ task.deadline | date:'short' }}</td>
+  
+    <td>
+      <ng-container *ngIf="editingTaskId === task.taskId; else actionButtons">
+        <button class="save-btn" (click)="saveTask(task.taskId)">💾 Save</button>
+      </ng-container>
+      <ng-template #actionButtons>
+        <button class="edit-btn" (click)="startEdit(task)">✏️</button>
+        <button class="delete-btn" (click)="deleteTask(task.taskId)">🗑️</button>
+      </ng-template>
+    </td>
+  </tr>
+</tbody>
+</table>
+  

@@ -3,11 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TaskHomeComponent } from './task-home/task-home.component';
+import { TaskHomeComponent } from './components/task-home/task-home.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TaskCreateComponent } from './components/task-create/task-create.component';
+import { TaskViewComponent } from './components/task-view/task-view.component';
+import { TaskUpdateComponent } from './components/task-update/task-update.component';
 
 
 
@@ -16,7 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     TaskHomeComponent,
     SignUpComponent,
-    LoginComponent
+    LoginComponent,
+    TaskCreateComponent,
+    TaskViewComponent,
+    TaskUpdateComponent
   ],
   imports: [
     BrowserModule,

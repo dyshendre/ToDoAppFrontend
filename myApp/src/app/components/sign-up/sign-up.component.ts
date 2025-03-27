@@ -32,20 +32,31 @@ export class SignUpComponent {
   //   }
   // }
   onSignUp() {
-    const apiUrl = 'http://localhost:8080/signuplogin/signup'; // Backend API URL
+    this.formSubmit(this.signupForm.value);
+  }
 
-    this.http.post(apiUrl, this.signupForm.value).subscribe({
+  formSubmit(formData: any){
+    let body: any = {
+      name: formData.name,
+      email: formData.email,
+      username: formData.username,
+      phoneNumber: formData.phoneNumber,
+      password: formData.password,
+      department: formData.department,
+    };
+    const apiUrl = 'http://localhost:8080/signuplogin/signup'; // Backend API URL
+    
+    this.http.post(apiUrl, body).subscribe({
       next: (response) => {
         console.log('Signup successful', response);
         alert('Signup Successful!');
+        this.router.navigate(['/login']);
       },
       error: (error) => {
         console.error('Signup failed', error);
         alert('Signup Failed!');
       },
     });
-    
-    
   }
 
 }

@@ -1,0 +1,33 @@
+<div class="container">
+    <h2>Create Task</h2>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label>Task</label>
+        <input type="text" formControlName="task" />
+        <small *ngIf="taskForm.get('task')?.errors?.['required']">Task is required</small>
+      </div>
+  
+      <div>
+        <label>Task Description</label>
+        <input type="text" formControlName="taskDescription"/>
+        <small *ngIf="taskForm.get('taskDescription')?.errors?.['required']">Description is required</small>
+      </div>
+  
+      <div>
+        <label>Assign Employee:</label>
+        <select formControlName="employeeId">
+          <option value="" disabled>Select Employee</option>
+          <option *ngFor="let emp of employees" [value]="emp.id">{{ emp.name }}</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>Deadline</label>
+        <input type="datetime-local" formControlName="deadline" />
+        <small *ngIf="taskForm.get('deadline')?.errors?.['required']">Deadline is required</small>
+      </div>
+  
+      <button type="submit" [disabled]="taskForm.invalid">Submit</button>
+    </form>
+  </div>
+  
