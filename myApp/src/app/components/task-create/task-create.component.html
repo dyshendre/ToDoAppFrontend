@@ -27,6 +27,16 @@
         <small *ngIf="taskForm.get('deadline')?.errors?.['required']">Deadline is required</small>
       </div>
   
+      <div>
+      <label>Time Zone:</label>
+      <select formControlName="timeZone">
+        <option value="">Select Time Zone</option>
+        <option *ngFor="let tz of timeZones" [value]="tz">{{ tz }}</option>
+      </select>
+      <small *ngIf="taskForm.get('timeZone')?.invalid && taskForm.get('timeZone')?.touched">
+          Time zone is required.
+      </small>
+      </div>
       <button type="submit" [disabled]="taskForm.invalid">Submit</button>
     </form>
   </div>

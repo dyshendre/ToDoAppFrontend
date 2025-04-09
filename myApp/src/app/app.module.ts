@@ -10,7 +10,6 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskCreateComponent } from './components/task-create/task-create.component';
 import { TaskViewComponent } from './components/task-view/task-view.component';
-import { TaskUpdateComponent } from './components/task-update/task-update.component';
 
 
 
@@ -21,8 +20,7 @@ import { TaskUpdateComponent } from './components/task-update/task-update.compon
     SignUpComponent,
     LoginComponent,
     TaskCreateComponent,
-    TaskViewComponent,
-    TaskUpdateComponent
+    TaskViewComponent
   ],
   imports: [
     BrowserModule,

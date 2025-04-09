@@ -12,8 +12,9 @@ export class TaskViewComponent  implements OnInit{
   tasks: any[] = [];
   editForm!: FormGroup;
   editingTaskId: number | null = null;
+  employeeId!: number;
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {}
+  constructor(private http: HttpClient, private fb: FormBuilder,private router: Router) {}
 
   ngOnInit() {
     this.getTasks();
@@ -35,6 +36,8 @@ export class TaskViewComponent  implements OnInit{
     });
   }
     startEdit(task: any) {
+      console.log("task===>",task);
+      this.employeeId=Number(task.employee.id);
       this.editingTaskId = task.taskId;
       this.editForm.setValue({
         task: task.task,
@@ -45,7 +48,15 @@ export class TaskViewComponent  implements OnInit{
 
   saveTask(taskId: number) {
     const updatedTask = this.editForm.value;
-    this.http.put(`http://localhost:8080/tasks/${taskId}`, updatedTask).subscribe({
+    const payload={
+      task: updatedTask.task,
+      taskDescription: updatedTask.taskDescription,
+      employeeId: this.employeeId,
+      deadline: updatedTask.deadline,
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+    }
+    console.log("updatedTask===>",payload);
+    this.http.put(`http://localhost:8080/tasks/${taskId}/update`, payload).subscribe({
       next: () => {
         this.getTasks();
         this.editingTaskId = null;
@@ -61,5 +72,9 @@ export class TaskViewComponent  implements OnInit{
         error: (err) => console.error('Error deleting task:', err)
       });
     }
+  }
+
+  addTask() {
+    this.router.navigate(['/task-create']); // Redirect to Task Create Page
   }
 }

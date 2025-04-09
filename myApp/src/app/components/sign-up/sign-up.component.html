@@ -4,43 +4,55 @@
       <div>
         <label>Name</label>
         <input type="text" formControlName="name" />
-        <small *ngIf="signupForm.get('name')?.errors?.['required']">Name is required</small>
-        <small *ngIf="signupForm.get('name')?.errors?.['minlength']">Minimum 3 characters required</small>
+        <div *ngIf="signupForm.get('name')?.invalid && (signupForm.get('name')?.touched || signupForm.get('name')?.dirty)">
+          <small *ngIf="signupForm.get('name')?.errors?.['required']">Name is required</small>
+          <small *ngIf="signupForm.get('name')?.errors?.['minlength']">Minimum 3 characters required</small>
+        </div>   
       </div>
   
       <div>
         <label>Username</label>
         <input type="text" formControlName="username" />
-        <small *ngIf="signupForm.get('username')?.errors?.['required']">Username is required</small>
-        <small *ngIf="signupForm.get('username')?.errors?.['minlength']">Minimum 3 characters required</small>
+        <div *ngIf="signupForm.get('username')?.invalid && (signupForm.get('username')?.touched || signupForm.get('username')?.dirty)">
+          <small *ngIf="signupForm.get('username')?.errors?.['required']">Username is required</small>
+          <small *ngIf="signupForm.get('username')?.errors?.['minlength']">Minimum 3 characters required</small>
+        </div> 
       </div>
   
       <div>
         <label>Email</label>
         <input type="email" formControlName="email" />
-        <small *ngIf="signupForm.get('email')?.errors?.['required']">Email is required</small>
-        <small *ngIf="signupForm.get('email')?.errors?.['email']">Invalid email format</small>
+        <div *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.touched || signupForm.get('email')?.dirty)">
+          <small *ngIf="signupForm.get('email')?.errors?.['required']">Email is required</small>
+          <small *ngIf="signupForm.get('email')?.errors?.['email']">Invalid email format</small>
+        </div>
       </div>
   
       <div>
         <label>Phone Number</label>
         <input type="text" formControlName="phoneNumber" />
-        <small *ngIf="signupForm.get('phoneNumber')?.errors?.['required']">Phone number is required</small>
-        <small *ngIf="signupForm.get('phoneNumber')?.errors?.['pattern']">Invalid phone number format</small>
+        <div *ngIf="signupForm.get('phoneNumber')?.invalid && (signupForm.get('phoneNumber')?.touched || signupForm.get('phoneNumber')?.dirty)">
+          <small *ngIf="signupForm.get('phoneNumber')?.errors?.['required']">Phone number is required</small>
+          <small *ngIf="signupForm.get('phoneNumber')?.errors?.['pattern']">Invalid phone number format</small>
+        </div>
       </div>    
   
       <div>
         <label>Password</label>
         <input type="password" formControlName="password" />
-        <small *ngIf="signupForm.get('password')?.errors?.['required']">Password is required</small>
-        <small *ngIf="signupForm.get('password')?.errors?.['minlength']">Minimum 6 characters required</small>
+        <div *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.touched || signupForm.get('password')?.dirty)">
+          <small *ngIf="signupForm.get('password')?.errors?.['required']">Password is required</small>
+          <small *ngIf="signupForm.get('password')?.errors?.['minlength']">Minimum 6 characters required</small>
+        </div>
       </div>
   
       <div>
         <label>Department</label>
         <input type="text" formControlName="department" />
-        <small *ngIf="signupForm.get('department')?.errors?.['required']">Department is required</small>
-        <small *ngIf="signupForm.get('department')?.errors?.['minlength']">Minimum 3 characters required</small>
+        <div *ngIf="signupForm.get('department')?.invalid && (signupForm.get('department')?.touched || signupForm.get('department')?.dirty)">
+          <small *ngIf="signupForm.get('department')?.errors?.['required']">Department is required</small>
+          <small *ngIf="signupForm.get('department')?.errors?.['minlength']">Minimum 3 characters required</small>
+        </div>
       </div>
   
       <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>

@@ -41,7 +41,7 @@ export class LoginComponent {
         if (response.status) {  
           localStorage.setItem('user', JSON.stringify(response.data));
           this.isLoggedIn = true;
-          this.router.navigate(['/task-home']);
+          this.router.navigate(['/task-view']);
         } else {
           this.loginError = response.message;
         }

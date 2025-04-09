@@ -12,26 +12,31 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class TaskCreateComponent {
   taskForm: FormGroup;
   employees: any[] = [];
+  timeZones: string[] = [
+    'UTC', 'America/New_York', 'Europe/London', 'Asia/Kolkata', 'Asia/Dubai'
+  ];
 
   constructor(private http: HttpClient, private employeeService: EmployeeService) {
     this.taskForm = new FormGroup({
       task: new FormControl('', Validators.required),
       taskDescription: new FormControl('', Validators.required),
       employeeId: new FormControl('', [Validators.required, Validators.min(1)]),
-      deadline: new FormControl('', Validators.required)
+      deadline: new FormControl('', Validators.required),
+      timeZone: new FormControl('Asia/Kolkata', Validators.required)
     });
 
+    
     // Fetch Employees and Store
     this.employeeService.getEmployees().subscribe(data => {
       this.employees = data;
     });
   }
 
-  onSubmit() {
+onSubmit() {
     if (this.taskForm.valid) {
       const taskData = this.taskForm.value;
       console.log('Submitting Task:', taskData);
-      const apiUrl = 'http://localhost:8080/task/create';
+      const apiUrl = 'http://localhost:8080/tasks/create';
 
       this.http.post<ApiResponse>(apiUrl, taskData).subscribe({
         next: (response) => {
@@ -47,3 +52,4 @@ export class TaskCreateComponent {
     }
   }
 }
+  
