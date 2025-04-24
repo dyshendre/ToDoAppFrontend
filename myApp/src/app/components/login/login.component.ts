@@ -39,7 +39,7 @@ export class LoginComponent {
       next: (response: ApiResponse) => {  // Ensure response type matches
         console.log('Login successfull', response);
         if (response.status) {  
-          localStorage.setItem('user', JSON.stringify(response.data));
+          localStorage.setItem('accessToken', response.data);
           this.isLoggedIn = true;
           this.router.navigate(['/task-view']);
         } else {
@@ -53,7 +53,7 @@ export class LoginComponent {
     });
   }
   onLogout() {
-    localStorage.removeItem('user'); // Remove user from localStorage
+    localStorage.removeItem('accessToken'); // Remove user from localStorage
     this.isLoggedIn = false;
     this.router.navigate(['/login']); // Redirect to login page
   }

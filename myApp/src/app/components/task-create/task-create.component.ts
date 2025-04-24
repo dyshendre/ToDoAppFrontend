@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiResponse } from 'src/app/models/ApiResponse';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
@@ -32,13 +32,27 @@ export class TaskCreateComponent {
     });
   }
 
+  getAccessToken(): string | null {
+    return localStorage.getItem('accessToken');
+  }
+
+  getAuthHeaders(): HttpHeaders {
+    return new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', 'Bearer ' + this.getAccessToken());
+  }
+
 onSubmit() {
     if (this.taskForm.valid) {
       const taskData = this.taskForm.value;
       console.log('Submitting Task:', taskData);
       const apiUrl = 'http://localhost:8080/tasks/create';
 
-      this.http.post<ApiResponse>(apiUrl, taskData).subscribe({
+      this.http.post<ApiResponse>(
+        apiUrl,
+        { headers: this.getAuthHeaders() }, 
+        taskData
+      ).subscribe({
         next: (response) => {
           console.log('Task created successfully', response);
           alert('Task Created Successfully!');

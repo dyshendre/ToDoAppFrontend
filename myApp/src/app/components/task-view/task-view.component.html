@@ -1,5 +1,11 @@
 <button class="add-tasks-btn" (click)="addTask()">➕ Add Task</button>
-<table>
+<div *ngIf="errorMsg">
+  <p >{{errorMsg}}
+    <span (click)="onLogin()">Go to login page</span>
+  </p>
+  
+</div>
+<table *ngIf="tasks.length > 0">
 <thead>
     <tr>
       <th>Task</th>
